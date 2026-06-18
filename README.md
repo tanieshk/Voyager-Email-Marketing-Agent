@@ -107,25 +107,35 @@ voyager-email-stack/
 ## Architecture
 
 ```text
-Research Agent
-      ↓
-Writer Agent
-      ↓
-Critic Agent
-      ↓
-(pass)
-      ↓
-Finalize
-      ↓
-HTML Email
-
-(fail)
-      ↓
-Writer Revision
-      ↓
-Critic Agent
-      ↓
-(max 2 loops)
+┌─────────────────────────────────────────────────────────┐
+│                   LangGraph Pipeline                    │
+│                                                         │
+│   ┌───────────────┐                                     │
+│   │ Research Agent│  Builds brief, marks [VERIFY: ...]  │
+│   └──────┬────────┘                                     │
+│          │                                              │
+│   ┌──────▼────────┐                                     │
+│   │  Writer Agent │  Outputs structured JSON copy       │
+│   └──────┬────────┘                                     │
+│          │                                              │
+│   ┌──────▼────────┐                                     │
+│   │  Critic Agent │  Scores 4 dimensions, threshold 0.75│
+│   └──────┬────────┘                                     │
+│          │                                              │
+│     ┌────▼─────┐                                        │
+│     │ Pass?    │                                        │
+│     └────┬─────┘                                        │
+│          │                                              │
+│    ✅ Yes │  ❌ No (max 2 retries)                      │
+│          │         │                                    │
+│   ┌──────▼──┐  ┌───▼──────────┐                        │
+│   │Finalize │  │Writer Revision│ ← feedback injected   │
+│   └──────┬──┘  └───┬──────────┘                        │
+│          │         └──→ Critic Agent (re-score)         │
+│   ┌──────▼──────┐                                       │
+│   │  HTML Email │                                       │
+│   └─────────────┘                                       │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -181,6 +191,22 @@ Same graph, different prompts. Writer returns `{message, char_count}` (max 300 c
 ![Critic Loop](docs/screenshots/critic_loop.png)
 
 The Critic Agent evaluates generated content and can automatically trigger revisions when quality falls below the configured threshold. This self-healing loop is the core agentic behavior of the system.
+
+---
+
+## Screenshots
+
+### Email — Agent Trace + Rendered Output
+
+![Email Output](docs/screenshots/email_output.png)
+
+### LinkedIn Post — Card Preview
+
+![LinkedIn Output](docs/screenshots/linkedin_output.png)
+
+### WhatsApp Message — Bubble Preview
+
+![WhatsApp Output](docs/screenshots/whatsapp_output.png)
 
 ---
 
