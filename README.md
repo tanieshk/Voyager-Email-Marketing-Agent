@@ -257,4 +257,10 @@ The graph, state, and prompts are model-agnostic.
 
 ---
 
-*Built by Tanieshk Yadav for the Teleport Internship Assignment.*
+👤 Author
+================
+The project was created by Tanieshk Yadav.
+
+📝 License
+================
+The project is licensed under the [MIT License](https://via.placeholder.com/license).
