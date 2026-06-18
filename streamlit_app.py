@@ -110,7 +110,10 @@ button[kind="primary"] { background: #0077ff !important; border: none !important
 st.markdown("""
 <div class="voyager-header">
     <h1>✈️ Voyager Marketing Agent Stack</h1>
-    <p>Multi-channel AI agent pipeline — Email · LinkedIn · WhatsApp</p>
+    <p>Voyager Email Marketing Agent
+
+Primary Channel: Email
+Extensions: LinkedIn · WhatsApp</p>
 </div>
 """, unsafe_allow_html=True)
 
