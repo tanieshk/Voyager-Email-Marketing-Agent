@@ -188,7 +188,9 @@ Same graph, different prompts. Writer returns `{message, char_count}` (max 300 c
 
 ### Critic Loop — Self-Healing Revision Workflow
 
-![Critic Loop](docs/screenshots/critic_loop.png)
+![Critic Loop 1](screenshot/critic_loop1.png)
+
+![Critic Loop 2](screenshot/critic_loop2.png)
 
 The Critic Agent evaluates generated content and can automatically trigger revisions when quality falls below the configured threshold. This self-healing loop is the core agentic behavior of the system.
 
@@ -198,15 +200,15 @@ The Critic Agent evaluates generated content and can automatically trigger revis
 
 ### Email — Agent Trace + Rendered Output
 
-![Email Output](docs/screenshots/email_output.png)
+![Email Output](screenshot/email_output.png)
 
 ### LinkedIn Post — Card Preview
 
-![LinkedIn Output](docs/screenshots/linkedin_output.png)
+![LinkedIn Output](screenshot/linkedin_output.png)
 
 ### WhatsApp Message — Bubble Preview
 
-![WhatsApp Output](docs/screenshots/whatsapp_output.png)
+![WhatsApp Output](screenshot/whatsapp_output.png)
 
 ---
 
